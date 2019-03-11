@@ -687,7 +687,7 @@ function Write-AzureStealthResults {
     [CmdletBinding()]
     param(
     [switch]
-    $cloudShellMode
+    $CloudShellMode
     )
     $resultCSVpath = $PSScriptRoot + "\results.csv"
     #$resultCSVpath = "C:\WORK\Azure\AzureStealth\Tests\results.csv"
@@ -704,13 +704,7 @@ function Write-AzureStealthResults {
 		$privilegedAzEntitiesDict.Values | sort -Descending EntityType | sort EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
 		#$string | Out-File -FilePath ./Hello.txt
 	}
-#$Header = @"
-#<style>
-#TABLE {border-width: 1px; border-style: solid; border-color: black; border-collapse: collapse;}
-#TH {border-width: 1px; padding: 3px; border-style: solid; border-color: black; background-color: #6495ED;}
-#TD {border-width: 1px; padding: 3px; border-style: solid; border-color: black;}
-#</style>
-#"@
+    }
     #$privilegedAzEntitiesDict.Values | ConvertTo-Html -Head $Header | Out-File -FilePath $resultHTMLpath
     #Invoke-Item -Path $resultCSVpath
 }
@@ -724,7 +718,7 @@ function Scan-AzureStealth {
     [switch]
     $UseCurrentCred,
 	[switch]
-    $cloudShellMode
+    $CloudShellMode
     )
     if (-not $UseCurrentCred) {
         $AzModule = Check-AzureModule
@@ -792,7 +786,7 @@ function Scan-AzureStealth {
         Run-SubscriptionScan -subscriptionId $_.id
     }
 
-    Write-AzureStealthResults -cloudShellMode $cloudShellMode
+    Write-AzureStealthResults -CloudShellMode $CloudShellMode
 
     # Export\Print out the current user role and permission in the scanned tenant
     # Export Tanent info + Users Info
@@ -819,3 +813,5 @@ function Escalate-toAzureGlobalAdmin {
 function Escalate-toAzureSubscriptionOwner {
 
 }
+
+Scan-AzureStealth -UseCurrentCred -CloudShellMode
