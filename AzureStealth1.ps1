@@ -704,7 +704,7 @@ function Write-AzureStealthResults {
 		$privilegedAzEntitiesDict.Values | sort -Descending EntityType | sort EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
 		#$string | Out-File -FilePath ./Hello.txt
 	}
-    }
+    
     #$privilegedAzEntitiesDict.Values | ConvertTo-Html -Head $Header | Out-File -FilePath $resultHTMLpath
     #Invoke-Item -Path $resultCSVpath
 }
@@ -814,4 +814,4 @@ function Escalate-toAzureSubscriptionOwner {
 
 }
 
-Scan-AzureStealth -UseCurrentCred -CloudShellMode
+#Scan-AzureStealth -UseCurrentCred -CloudShellMode
