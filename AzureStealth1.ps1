@@ -425,18 +425,20 @@ function Add-EntityToDict {
         $EntityId = $AzEntityObject.ObjectId
         if (-not $entityDict.contains($EntityId)) { 
             $usersPhotoFolder = $PSScriptRoot + "\PrivilegedUserPhotos"
-            if ($AzEntityObject.ExtensionProperty."thumbnailPhoto@odata.mediaEditLink") {
-                $entityHasPhoto = $true
-                $photoFolderExists = Test-Path -Path $usersPhotoFolder
-                if (-not $photoFolderExists) {
-                    New-Item -ItemType directory -Path $usersPhotoFolder > $null
-                }
-                try {
-                    Get-AzureADUserThumbnailPhoto -ObjectId $EntityId -FilePath $usersPhotoFolder -ErrorAction SilentlyContinue > $null
-                    $entityHasPhoto = $true
-                }
-                catch {}
-            }
+	    if (-not $CloudShellMode) {
+		    if ($AzEntityObject.ExtensionProperty."thumbnailPhoto@odata.mediaEditLink") {
+			$entityHasPhoto = $true
+			$photoFolderExists = Test-Path -Path $usersPhotoFolder
+			if (-not $photoFolderExists) {
+			    New-Item -ItemType directory -Path $usersPhotoFolder > $null
+			}
+			try {
+			    Get-AzureADUserThumbnailPhoto -ObjectId $EntityId -FilePath $usersPhotoFolder -ErrorAction SilentlyContinue > $null
+			    $entityHasPhoto = $true
+			}
+			catch {}
+		    }
+	    }
             else {
                 $entityHasPhoto = $false
             }        
