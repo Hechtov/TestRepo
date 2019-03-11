@@ -722,6 +722,9 @@ function Scan-AzureStealth {
 	[switch]
     $CloudShellMode
     )
+    if ($CloudShellMode) {
+    	$CloudShellMode = $true
+    }
     if (-not $UseCurrentCred) {
         $AzModule = Check-AzureModule
         if ($AzModule -eq $false) {
