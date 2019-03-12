@@ -711,7 +711,7 @@ function Write-AzureStealthResults {
 		#cd /usr/asaf/clouddrive/
 		$string = "HelloWorld2!"
 		$string | Out-File -FilePath $resultCSVpath
-		$privilegedAzEntitiesDict.Values | sort -Descending EntityType | sort EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
+		$privilegedAzEntitiesDict.Values | sort-object -Descending EntityType | sort-object EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
 		
     }
     
