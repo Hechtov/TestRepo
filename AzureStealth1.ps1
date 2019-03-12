@@ -701,13 +701,18 @@ function Write-AzureStealthResults {
 		$privilegedAzEntitiesDict.Values | sort -Descending EntityType | sort EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
     }
     else {
+		Write-Host "finishing"
 		$cloudDriveInfo = Get-CloudDrive
+		write-host $cloudDriveInfo
 		$localCloudShellPath = $cloudDriveInfo.MountPoint
+		write-host $localCloudShellPath
 		$resultCSVpath = $localCloudShellPath + "/AzureStealthScan-Results.csv"
+		write-host $resultCSVpath
 		#cd /usr/asaf/clouddrive/
-		#$string = "Hello World"
+		$string = "HelloWorld2!"
+		$string | Out-File -FilePath $resultCSVpath
 		$privilegedAzEntitiesDict.Values | sort -Descending EntityType | sort EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
-		#$string | Out-File -FilePath ./Hello.txt
+		
     }
     
     #$privilegedAzEntitiesDict.Values | ConvertTo-Html -Head $Header | Out-File -FilePath $resultHTMLpath
