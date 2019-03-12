@@ -18,6 +18,9 @@ Versions Notes:
 
 Version 0.1 - 03.03.19
 
+Direct run from GitHub:
+IEX (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/Hechtov/TestRepo/master/AzureStealth1.ps1')
+
 #>
 
 $AzureStealthVersion = "v0.1"
