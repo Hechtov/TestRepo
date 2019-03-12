@@ -722,9 +722,9 @@ function Scan-AzureStealth {
 	[switch]
     $CloudShellMode
     )
-    if ($CloudShellMode) {
-    	$CloudShellMode = $true
-    }
+    #if ($CloudShellMode) {
+    #	$CloudShell = $true
+    #}
     if (-not $UseCurrentCred) {
         $AzModule = Check-AzureModule
         if ($AzModule -eq $false) {
@@ -790,8 +790,13 @@ function Scan-AzureStealth {
         Set-AzContext -SubscriptionId $_.id > $null
         Run-SubscriptionScan -subscriptionId $_.id
     }
-
-    Write-AzureStealthResults -CloudShellMode $CloudShellMode
+    
+    if ($CloudShellMode) {
+    	Write-AzureStealthResults -CloudShellMode
+    }
+    else {
+    	Write-AzureStealthResults
+    }
 
     # Export\Print out the current user role and permission in the scanned tenant
     # Export Tanent info + Users Info
