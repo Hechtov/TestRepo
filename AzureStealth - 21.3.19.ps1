@@ -844,15 +844,15 @@ function Write-AzureStealthResults {
         $resultsZipPath = $localCloudShellPath + "/AzureStealth/Results-20190321-1254.zip"
         Compress-Archive -Path $resultsFolder -CompressionLevel Optimal -DestinationPath $resultsZipPath
 
-        Write-Host "`n  [+] Completed the scan - check the results folder - in the following location:"
-        Write-Host $resultsFolder
+        #Write-Host "`n  [+] Completed the scan - check the results folder - in the following location:"
+        #Write-Host $resultsFolder
 
         Write-Host "`n  [+] Completed the scan - the results files are available for download from:`n$resultsZipPath"
-        Write-Host "`nYou can also use the Azure Portal to view the results files - Go To:"
-        Write-Host "`"The Storage Accounts menu`" => `""$cloudDriveInfo.Name"`" => `"Files view`""
-        Write-Host "Choose the File Share: `""$cloudDriveInfo.FileShareName"`""
-        Write-Host "In this File Share open the folders:"
-        Write-Host "`"AzureStealth`" and `"Results-"$resultsTime"`""
+        Write-Host "`n  [+] You can also use the Azure Portal to view the results files - Go To:"
+        Write-Host "      `"Click on => The Storage Accounts menu`" => `"",$cloudDriveInfo.Name,"`" => `"Files view`""
+	Write-Host "      Choose the File Share: `"",$cloudDriveInfo.FileShareName,"`""
+        Write-Host "      In this File Share open the folders:"
+        Write-Host "      `"AzureStealth`" and `"Results-"$resultsTime"`""
 
 	    #/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/AzureStealthScan-Results.csv
 	    #Write-Host $resultCSVpath
