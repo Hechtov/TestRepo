@@ -841,7 +841,38 @@ function Write-AzureStealthResults {
 	Write-Host $cloudDriveInfoString
         #Write-Host "In addition, you can easily go to the results folder using the following HTTPS link:"
     }
-    
+    <#
+$x = Get-CloudDrive
+$keys = Get-AzStorageAccountKey -ResourceGroupName $x.ResourceGroupName -Name $x.StorageAccountName
+$useKey = $keys | Where-Object {$_.keyname -eq "key1"}
+$storageContext = New-AzStorageContext -StorageAccountName $x.StorageAccountName -StorageAccountKey $useKey.value
+
+Get-AzStorageFileContent -ShareName $x.FileShareName -Path "AzureStealth/Results-20190321-1030/AzureStealthScan-Results.csv" -context $storageContext
+
+Get-AzStorageFile -ShareName $x.FileShareName -Path "AzureStealth/Results-20190321-1030" -Context $storageContext | Get-AzStorageFile
+
+Compress-Archive -Path "/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/AzureStealthScan-Results.csv,`
+/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/AzureDirectory-Info.csv,`
+/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/AzureUsers-Info.csv` 
+" -CompressionLevel Optimal -DestinationPath "/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/ZIP2.zip"
+
+Compress-Archive -Path "/home/asaf/clouddrive/AzureStealth/Results-20190321-1254" -CompressionLevel Optimal -DestinationPath "/home/asaf/clouddrive/AzureStealth/Results-20190321-1254.zip"
+Compress-Archive -Path "/home/asaf/clouddrive/AzureStealth/Results-20190321-1254" -CompressionLevel Optimal -DestinationPath "/home/asaf/AzureStealth-Results-20190321-1254.zip"
+
+Get-AzStorageFileContent -Context $storageContext -ShareName $x.FileShareName -Path "AzureStealth/Results-20190321-1030/AzureStealthScan-Results.csv" -Destination "C:\Users\asafh\Downloads\AzureStealthScan-newnew.csv"
+
+
+$x = Get-CloudDrive
+
+The results files are available for download at:
+"/home/asaf/clouddrive/AzureStealth/Results-20190321-1254.zip"
+
+You can also use the Azure Portal to view the results files - Go To:
+"The Storage Accounts menu" => $x.Name ("csb46dc53a0086ax4af2x8c0") => "Files view" 
+Choose the File Share: $x.FileShareName ("cs-asaf-hecht-cyberark-com-10037ffea07c5e90")
+In this File Share choose the folders:
+"AzureStealth" and "Results-20190321-1254" 
+    #>
     #$privilegedAzEntitiesDict.Values | ConvertTo-Html -Head $Header | Out-File -FilePath $resultHTMLpath
     #Invoke-Item -Path $resultCSVpath
 }
