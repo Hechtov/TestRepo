@@ -513,7 +513,7 @@ function Run-TenantScan {
 
     
     if ($fullUserReconList){
-        $allUsers = Get-AzureADUser 
+        $allUsers = Get-AzureADUser -All $true
 	write-host "Users Number: "$allUsers.count
         $allUsers | foreach {
             Add-EntityToDict -AzEntityObject $_
@@ -850,8 +850,8 @@ function Write-AzureStealthResults {
 	$storageName = $cloudDriveInfo.Name
 	$fileShareName = $cloudDriveInfo.FileShareName
         Write-Host "`n  [+] Completed the scan - the results files are available for download from:`n      $resultsZipPath"
-        Write-Host "`n  [+] You can also use the Azure Portal to view the results files - Go To:"
-        Write-Host "      Click on => `"The Storage Accounts menu`" => `"$storageName`" => `"Files view`""
+        Write-Host "`n  [+] You can also use the Azure Portal to view the results files:"
+        Write-Host "      Go to => `"The Storage Accounts menu`" => `"$storageName`" => `"Files view`""
 	Write-Host "      Choose the File Share: `"$fileShareName`""
         Write-Host "      In this File Share:"
         Write-Host "      Open the folders => `"AzureStealth`" and `"Results-"$resultsTime"`"`n"
