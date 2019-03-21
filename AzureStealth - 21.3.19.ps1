@@ -513,7 +513,8 @@ function Run-TenantScan {
 
     
     if ($fullUserReconList){
-        $allUsers = Get-AzureADUser -All $true
+    	$usersLimit = 200000
+        $allUsers = Get-AzureADUser -Top $usersLimit
 	write-host "Users Number: "$allUsers.count
         $allUsers | foreach {
             Add-EntityToDict -AzEntityObject $_
