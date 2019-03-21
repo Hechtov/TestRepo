@@ -834,7 +834,10 @@ function Write-AzureStealthResults {
 		Write-AzureReconInfo -ResultsFolder $resultsFolder -CloudShellMode
         Write-Host "`n  [+] Check the results folder - in the following location:"
         Write-Host $resultsFolder
-	$cloudDriveInfo | foreach {Write-Host $_}
+	Write-Host $resultCSVpath
+	Write-Host "`nThe storage details of this current CloudShell are:"
+	$cloudDriveInfoString = $cloudDriveInfo | Out-String
+	Write-Host $cloudDriveInfoString
         #Write-Host "In addition, you can easily go to the results folder using the following HTTPS link:"
 
     }
