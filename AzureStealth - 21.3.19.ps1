@@ -832,14 +832,14 @@ function Write-AzureStealthResults {
 		#$string | Out-File -FilePath $resultCSVpath
 		$privilegedAzEntitiesDict.Values | sort-object -Descending EntityType | sort-object EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
 		Write-AzureReconInfo -ResultsFolder $resultsFolder -CloudShellMode
-        Write-Host "`n  [+] Check the results folder - in the following location:"
+        Write-Host "`n  [+] Completed the scan - check the results folder - in the following location:"
         Write-Host $resultsFolder
-	Write-Host $resultCSVpath
-	Write-Host "`nThe storage details of this current CloudShell are:"
+	#/home/asaf/clouddrive/AzureStealth/Results-20190321-1254/AzureStealthScan-Results.csv
+	#Write-Host $resultCSVpath
+	Write-Host "`nThe details of this current CloudShell storage are:" -NoNewline
 	$cloudDriveInfoString = $cloudDriveInfo | Out-String
 	Write-Host $cloudDriveInfoString
         #Write-Host "In addition, you can easily go to the results folder using the following HTTPS link:"
-
     }
     
     #$privilegedAzEntitiesDict.Values | ConvertTo-Html -Head $Header | Out-File -FilePath $resultHTMLpath
@@ -959,7 +959,7 @@ function Scan-AzureStealth {
         Disable-AzContextAutosave
     }
 
-    Write-Host "`n  [+] Completed the scan`n"
+    #Write-Host "`n  [+] Completed the scan`n"
       
 }
 
