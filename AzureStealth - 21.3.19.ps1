@@ -820,7 +820,7 @@ function Write-AzureStealthResults {
 		#write-host $cloudDriveInfo
 		$localCloudShellPath = $cloudDriveInfo.MountPoint
 		#write-host $localCloudShellPath
-        $resultsFolder = $localCloudShellPath + "AzureStealth/Results-" + $resultsTime
+        $resultsFolder = $localCloudShellPath + "/AzureStealth/Results-" + $resultsTime
         $resultsFolderExists = Test-Path -Path $resultsFolder
         if (-not $resultsFolderExists) {
 			New-Item -ItemType directory -Path $resultsFolder > $null
