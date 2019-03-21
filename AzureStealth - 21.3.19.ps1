@@ -513,7 +513,8 @@ function Run-TenantScan {
 
     
     if ($fullUserReconList){
-        $allUsers = Get-AzureADUser   
+        $allUsers = Get-AzureADUser 
+	write-host "Users Number: "$allUsers.count
         $allUsers | foreach {
             Add-EntityToDict -AzEntityObject $_
         }
