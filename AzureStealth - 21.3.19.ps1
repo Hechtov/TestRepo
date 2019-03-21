@@ -833,7 +833,8 @@ function Write-AzureStealthResults {
 		$privilegedAzEntitiesDict.Values | sort-object -Descending EntityType | sort-object EntityDisplayName, PrivilegeType, RoleId | Export-Csv -path $resultCSVpath -NoTypeInformation
 		Write-AzureReconInfo -ResultsFolder $resultsFolder -CloudShellMode
         Write-Host "`n  [+] Check the results folder - in the following location:"
-        Write-Host $cloudDriveInfo
+        Write-Host $resultsFolder
+	$cloudDriveInfo | foreach {Write-Host $_}
         #Write-Host "In addition, you can easily go to the results folder using the following HTTPS link:"
 
     }
